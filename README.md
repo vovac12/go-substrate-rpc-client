@@ -14,9 +14,10 @@ This client is modelled after [polkadot-js/api](https://github.com/polkadot-js/a
 This package is feature complete, but it is relatively new and might still contain bugs. We advice to use it with caution in production. It comes without any warranties, please refer to LICENCE for details.
 
 ## Requirements
+
 Substrate Key Management requires `subkey` to be present in your PATH: https://substrate.dev/docs/en/knowledgebase/integrate/subkey
 
-The `subkey` recommended version: https://github.com/paritytech/substrate/releases/tag/v2.0.0-rc6 
+The `subkey` recommended version: https://github.com/paritytech/substrate/releases/tag/v2.0.0-rc6
 
 ## Documentation & Usage Examples
 
@@ -25,8 +26,8 @@ Please refer to https://godoc.org/github.com/centrifuge/go-substrate-rpc-client
 ## Contributing
 
 1. Install dependencies by running `make` followed by `make install`
-1. Run tests `make test`
-1. Lint `make lint` (you can use `make lint-fix` to automatically fix issues)
+2. Run tests `make test`
+3. Lint `make lint` (you can use `make lint-fix` to automatically fix issues)
 
 ## Run tests in a Docker container against the Substrate Default Docker image
 
@@ -35,8 +36,8 @@ Please refer to https://godoc.org/github.com/centrifuge/go-substrate-rpc-client
 ## Run tests locally against the Substrate Default Docker image
 
 1. Start the Substrate Default Docker image: `make run-substrate-docker`
-1. In another terminal, run the tests against that image: `make test`
-1. Visit https://polkadot.js.org/apps for inspection
+2. In another terminal, run the tests against that image: `make test`
+3. Visit https://polkadot.js.org/apps for inspection
 
 ## Run tests locally against any substrate endpoint
 
