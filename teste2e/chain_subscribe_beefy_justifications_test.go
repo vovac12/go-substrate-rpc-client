@@ -39,16 +39,12 @@ func TestChain_SubscribeBeefyJustifications(t *testing.T) {
 	}
 
 	ch := make(chan interface{})
-	// ch := make(chan SignedCommitment)
-
-	t.Log("1")
 
 	sub, err := api.Client.Subscribe(context.Background(), "beefy", "subscribeJustifications", "unsubscribeJustifications", "justifications", ch)
 	if err != nil {
 		panic(err)
 	}
 	defer sub.Unsubscribe()
-	t.Log("2")
 
 	timeout := time.After(40 * time.Second)
 	received := 0
@@ -56,7 +52,6 @@ func TestChain_SubscribeBeefyJustifications(t *testing.T) {
 	for {
 		select {
 		case msg := <-ch:
-			t.Log("3")
 			fmt.Printf("encoded msg: %#v\n", msg)
 
 			s := &types.SignedCommitment{}
@@ -64,8 +59,6 @@ func TestChain_SubscribeBeefyJustifications(t *testing.T) {
 			if err != nil {
 				panic(err)
 			}
-
-			t.Log("4")
 			fmt.Printf("decoded msg: %#v\n", s)
 
 			received++
@@ -74,7 +67,6 @@ func TestChain_SubscribeBeefyJustifications(t *testing.T) {
 				return
 			}
 		case <-timeout:
-			t.Log("5")
 			assert.FailNow(t, "timeout reached without getting 2 notifications from subscription")
 			return
 		}
