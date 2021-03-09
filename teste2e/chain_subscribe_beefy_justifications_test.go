@@ -28,18 +28,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-type Commitment struct {
-	Payload        types.H256        // payload
-	BlockNumber    types.BlockNumber // block_number
-	ValidatorSetID types.U64         // validator_set_id
-}
-
-type SignedCommitment struct {
-	Commitment Commitment // `json:"commitment"`
-	Signatures types.Data // `json:"signatures"`
-	// Signatures []OptionBeefySignature // `json:"signatures"`
-}
-
 func TestChain_SubscribeBeefyJustifications(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping end-to-end test in short mode.")
@@ -50,7 +38,7 @@ func TestChain_SubscribeBeefyJustifications(t *testing.T) {
 		panic(err)
 	}
 
-	ch := make(chan types.Bytes)
+	ch := make(chan interface{})
 	// ch := make(chan SignedCommitment)
 
 	t.Log("1")
@@ -69,16 +57,16 @@ func TestChain_SubscribeBeefyJustifications(t *testing.T) {
 		select {
 		case msg := <-ch:
 			t.Log("3")
-			fmt.Printf("%#v\n", msg)
+			fmt.Printf("encoded msg: %#v\n", msg)
 
-			s := &SignedCommitment{}
-			err := types.DecodeFromBytes(msg, s)
+			s := &types.SignedCommitment{}
+			err := types.DecodeFromHexString(msg.(string), s)
 			if err != nil {
 				panic(err)
 			}
 
 			t.Log("4")
-			fmt.Printf("%#v\n", s)
+			fmt.Printf("decoded msg: %#v\n", s)
 
 			received++
 
