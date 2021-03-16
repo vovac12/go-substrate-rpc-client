@@ -27,7 +27,7 @@ import (
 )
 
 type LeafProof struct {
-	BlockHash types.U256
+	BlockHash types.Hash
 	Leaf      []byte
 	Proof     []byte
 }
