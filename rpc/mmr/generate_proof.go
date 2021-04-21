@@ -13,5 +13,7 @@ func (c *MMR) GenerateProof(leafIndex uint64) (types.GenerateMMRProofResponse, e
 		return types.GenerateMMRProofResponse{}, err
 	}
 
+	// TODO: Decode the response into the right type/variable?
+
 	return types.GenerateMMRProofResponse{}, nil
 }
