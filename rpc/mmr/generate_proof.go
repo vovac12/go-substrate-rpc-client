@@ -6,14 +6,11 @@ import (
 
 // GenerateProof retrieves a proof and leaf
 func (c *MMR) GenerateProof(leafIndex uint64) (types.GenerateMMRProofResponse, error) {
-	var res string
-
+	var res types.GenerateMMRProofResponse
 	err := c.client.Call(&res, "mmr_generateProof", leafIndex)
 	if err != nil {
 		return types.GenerateMMRProofResponse{}, err
 	}
 
-	// TODO: Decode the response into the right type/variable?
-
-	return types.GenerateMMRProofResponse{}, nil
+	return res, nil
 }
