@@ -34,7 +34,7 @@ func TestMmr_GenerateProof(t *testing.T) {
 		panic(err)
 	}
 
-	res, err := api.RPC.MMR.GenerateProof(0)
+	res, err := api.RPC.MMR.GenerateProofLatest(0)
 	if err != nil {
 		panic(err)
 	}
