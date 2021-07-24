@@ -35,7 +35,7 @@ func NewStorageKey(b []byte) StorageKey {
 	return b
 }
 
-// CreateStorageKeyPrefix creates a key prefix for keys of a map
+// CreateStorageKeyPrefix creates a key prefix for keys of a map.
 // Can be used as an input to the state.GetKeys() RPC, in order to list the keys of map.
 func CreateStorageKeyPrefix(prefix, method string) []byte {
 	return createPrefixedKey(method, prefix)
