@@ -31,6 +31,25 @@ func (s *State) GetKeysLatest(prefix types.StorageKey) ([]types.StorageKey, erro
 	return s.getKeys(prefix, nil)
 }
 
+// GetKeysPaged retreives the keys with the given prefix with paginated results
+func (s *State) GetKeysPaged(prefix types.StorageKey, //nolint:interfacer
+	count uint32, startKey *types.StorageKey, //nolint:interfacer
+	blockHash types.Hash) ([]types.StorageKey, error) {
+	var res []string
+
+	var startKeyHex *string
+	if startKey != nil {
+		hex := startKey.Hex()
+		startKeyHex = &hex
+	}
+	err := client.CallWithBlockHash(s.client, &res, "state_getKeysPaged", &blockHash, prefix.Hex(), count, startKeyHex)
+	if err != nil {
+		return nil, err
+	}
+
+	return decodeResponse(res)
+}
+
 func (s *State) getKeys(prefix types.StorageKey, blockHash *types.Hash) ([]types.StorageKey, error) {
 	var res []string
 	err := client.CallWithBlockHash(s.client, &res, "state_getKeys", blockHash, prefix.Hex())
@@ -38,12 +57,16 @@ func (s *State) getKeys(prefix types.StorageKey, blockHash *types.Hash) ([]types
 		return nil, err
 	}
 
-	keys := make([]types.StorageKey, len(res))
-	for i, r := range res {
-		err = types.DecodeFromHexString(r, &keys[i])
+	return decodeResponse(res)
+}
+
+func decodeResponse(response []string) ([]types.StorageKey, error) {
+	keys := make([]types.StorageKey, len(response))
+	for i, r := range response {
+		err := types.DecodeFromHexString(r, &keys[i])
 		if err != nil {
 			return nil, err
 		}
 	}
-	return keys, err
+	return keys, nil
 }
