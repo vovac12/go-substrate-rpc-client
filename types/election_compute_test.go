@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/snowfork/go-substrate-rpc-client/v3/scale"
 	"github.com/stretchr/testify/assert"
+	"github.com/vovac12/go-substrate-rpc-client/v3/scale"
 )
 
 func TestElectionComputeEncodeDecode(t *testing.T) {

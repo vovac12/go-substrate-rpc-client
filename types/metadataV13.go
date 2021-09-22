@@ -5,8 +5,8 @@ import (
 	"hash"
 	"strings"
 
-	"github.com/snowfork/go-substrate-rpc-client/v3/scale"
-	"github.com/snowfork/go-substrate-rpc-client/v3/xxhash"
+	"github.com/vovac12/go-substrate-rpc-client/v3/scale"
+	"github.com/vovac12/go-substrate-rpc-client/v3/xxhash"
 )
 
 type MetadataV13 struct {

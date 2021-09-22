@@ -19,8 +19,8 @@ package chain
 import (
 	"testing"
 
-	"github.com/snowfork/go-substrate-rpc-client/v3/types"
 	"github.com/stretchr/testify/assert"
+	"github.com/vovac12/go-substrate-rpc-client/v3/types"
 )
 
 func TestChain_GetBlockHash(t *testing.T) {

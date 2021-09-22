@@ -20,9 +20,9 @@ import (
 	"crypto/rand"
 	"testing"
 
-	. "github.com/snowfork/go-substrate-rpc-client/v3/signature"
-	"github.com/snowfork/go-substrate-rpc-client/v3/types"
 	"github.com/stretchr/testify/assert"
+	. "github.com/vovac12/go-substrate-rpc-client/v3/signature"
+	"github.com/vovac12/go-substrate-rpc-client/v3/types"
 )
 
 var testSecretPhrase = "little orbit comfort eyebrow talk pink flame ridge bring milk equip blood"

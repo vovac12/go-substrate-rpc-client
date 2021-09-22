@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"testing"
 
-	gsrpc "github.com/snowfork/go-substrate-rpc-client/v3"
-	"github.com/snowfork/go-substrate-rpc-client/v3/config"
 	"github.com/stretchr/testify/assert"
+	gsrpc "github.com/vovac12/go-substrate-rpc-client/v3"
+	"github.com/vovac12/go-substrate-rpc-client/v3/config"
 )
 
 func TestAuthor_PendingExtrinsics(t *testing.T) {

@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/snowfork/go-substrate-rpc-client/v3/scale"
+	"github.com/vovac12/go-substrate-rpc-client/v3/scale"
 )
 
 // U8 is an unsigned 8-bit integer

@@ -21,10 +21,10 @@ import (
 	"testing"
 	"time"
 
-	gsrpc "github.com/snowfork/go-substrate-rpc-client/v3"
-	"github.com/snowfork/go-substrate-rpc-client/v3/config"
-	"github.com/snowfork/go-substrate-rpc-client/v3/types"
 	"github.com/stretchr/testify/assert"
+	gsrpc "github.com/vovac12/go-substrate-rpc-client/v3"
+	"github.com/vovac12/go-substrate-rpc-client/v3/config"
+	"github.com/vovac12/go-substrate-rpc-client/v3/types"
 )
 
 func TestState_SubscribeStorage_EventsRaw(t *testing.T) {

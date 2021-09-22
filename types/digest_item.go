@@ -19,7 +19,7 @@ package types
 import (
 	"fmt"
 
-	"github.com/snowfork/go-substrate-rpc-client/v3/scale"
+	"github.com/vovac12/go-substrate-rpc-client/v3/scale"
 )
 
 // DigestItem specifies the item in the logs of a digest

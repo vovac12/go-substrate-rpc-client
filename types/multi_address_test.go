@@ -3,9 +3,9 @@ package types_test
 import (
 	"testing"
 
-	"github.com/snowfork/go-substrate-rpc-client/v3/signature"
-	"github.com/snowfork/go-substrate-rpc-client/v3/types"
 	"github.com/stretchr/testify/assert"
+	"github.com/vovac12/go-substrate-rpc-client/v3/signature"
+	"github.com/vovac12/go-substrate-rpc-client/v3/types"
 )
 
 func TestNewMultiAddressFromAccountID(t *testing.T) {
