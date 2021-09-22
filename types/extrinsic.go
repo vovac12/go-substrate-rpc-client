@@ -47,7 +47,7 @@ type Extrinsic struct {
 	// Version is the encoded version flag (which encodes the raw transaction version and signing information in one byte)
 	Version byte
 	// Signature is the ExtrinsicSignatureV4, it's presence depends on the Version flag
-	Signature ExtrinsicSignatureV4
+	Signature ExtrinsicSignatureV3
 	// Method is the call this extrinsic wraps
 	Method Call
 }
@@ -55,7 +55,7 @@ type Extrinsic struct {
 // NewExtrinsic creates a new Extrinsic from the provided Call
 func NewExtrinsic(c Call) Extrinsic {
 	return Extrinsic{
-		Version: ExtrinsicVersion4,
+		Version: ExtrinsicVersion3,
 		Method:  c,
 	}
 }
@@ -135,29 +135,26 @@ func (e *Extrinsic) Sign(signer signature.KeyringPair, o SignatureOptions) error
 		era = ExtrinsicEra{IsImmortalEra: true}
 	}
 
-	payload := ExtrinsicPayloadV4{
-		ExtrinsicPayloadV3: ExtrinsicPayloadV3{
-			Method:      mb,
-			Era:         era,
-			Nonce:       o.Nonce,
-			Tip:         o.Tip,
-			SpecVersion: o.SpecVersion,
-			GenesisHash: o.GenesisHash,
-			BlockHash:   o.BlockHash,
-		},
-		TransactionVersion: o.TransactionVersion,
+	payload := ExtrinsicPayloadV3{
+		Method:      mb,
+		Era:         era,
+		Nonce:       o.Nonce,
+		Tip:         o.Tip,
+		SpecVersion: o.SpecVersion,
+		GenesisHash: o.GenesisHash,
+		BlockHash:   o.BlockHash,
 	}
 
-	signerPubKey := NewMultiAddressFromAccountID(signer.PublicKey)
+	signerPubKey := NewAddressFromAccountID(signer.PublicKey)
 
 	sig, err := payload.Sign(signer)
 	if err != nil {
 		return err
 	}
 
-	extSig := ExtrinsicSignatureV4{
+	extSig := ExtrinsicSignatureV3{
 		Signer:    signerPubKey,
-		Signature: MultiSignature{IsSr25519: true, AsSr25519: sig},
+		Signature: sig,
 		Era:       era,
 		Nonce:     o.Nonce,
 		Tip:       o.Tip,
