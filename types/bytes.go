@@ -30,9 +30,13 @@ func NewBytes(b []byte) Bytes {
 	return Bytes(b)
 }
 
+func (b Bytes) Len() int { return len(b) }
+
 // BytesBare represents byte slices that will be encoded bare, i. e. without a compact length prefix. This makes it
 // impossible to decode the bytes, but is used as the payload for signing.
 type BytesBare []byte
+
+func (b BytesBare) Len() int { return len(b) }
 
 // Encode implements encoding for BytesBare, which just unwraps the bytes of BytesBare without adding a compact
 // length prefix

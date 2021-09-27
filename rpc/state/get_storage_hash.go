@@ -31,6 +31,25 @@ func (s *State) GetStorageHashLatest(key types.StorageKey) (types.Hash, error) {
 	return s.getStorageHash(key, nil)
 }
 
+// GetStorageHash retreives the raw storage hash for the given key
+func (s *State) GetStorageHashRaw(key types.StorageKey, blockHash types.Hash) ([]byte, error) {
+	return s.getStorageHashRaw(key, &blockHash)
+}
+
+// GetStorageHashLatest retreives the raw storage hash for the given key for the latest block height
+func (s *State) GetStorageHashLatestRaw(key types.StorageKey) ([]byte, error) {
+	return s.getStorageHashRaw(key, nil)
+}
+
+func (s *State) getStorageHashRaw(key types.StorageKey, blockHash *types.Hash) ([]byte, error) {
+	var res string
+	err := client.CallWithBlockHash(s.client, &res, "state_getStorageHash", blockHash, key.Hex())
+	if err != nil {
+		return []byte{}, err
+	}
+	return types.HexDecodeString(res)
+}
+
 func (s *State) getStorageHash(key types.StorageKey, blockHash *types.Hash) (types.Hash, error) {
 	var res string
 	err := client.CallWithBlockHash(s.client, &res, "state_getStorageHash", blockHash, key.Hex())

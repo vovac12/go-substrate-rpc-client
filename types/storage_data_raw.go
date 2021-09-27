@@ -58,3 +58,8 @@ func (s *StorageDataRaw) Decode(decoder scale.Decoder) error {
 func (s StorageDataRaw) Hex() string {
 	return fmt.Sprintf("%#x", s)
 }
+
+// Return length of buffer
+func (s StorageDataRaw) Len() int {
+	return len(s)
+}
