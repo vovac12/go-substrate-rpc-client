@@ -33,6 +33,57 @@ type Header struct {
 	Digest         Digest      `json:"digest"`
 }
 
+func (h *Header) Decode(decoder scale.Decoder) error {
+	var err error
+	err = decoder.Decode(&h.ParentHash)
+	if err != nil {
+		return err
+	}
+	err = decoder.Decode(&h.Number)
+	if err != nil {
+		return err
+	}
+	err = decoder.Decode(&h.StateRoot)
+	if err != nil {
+		return err
+	}
+	err = decoder.Decode(&h.ExtrinsicsRoot)
+	if err != nil {
+		return err
+	}
+	err = decoder.Decode(&h.Digest)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (h Header) Encode(encoder scale.Encoder) error {
+	var err error
+	encoder.Encode(h.ParentHash)
+	if err != nil {
+		return err
+	}
+	encoder.Encode(h.Number)
+	if err != nil {
+		return err
+	}
+	encoder.Encode(h.StateRoot)
+	if err != nil {
+		return err
+	}
+	encoder.Encode(h.ExtrinsicsRoot)
+	if err != nil {
+		return err
+	}
+	encoder.Encode(h.Digest)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 // BlockNumber is represented decoded as a U32, but will be encoded as a compact uint (which has an additinoal length
 // prefix). In most cases, you should use a U32 (or another custom type depending on your chain) instead.
 type BlockNumber U32
