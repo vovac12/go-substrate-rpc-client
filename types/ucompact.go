@@ -32,6 +32,11 @@ func NewUCompactFromUInt(value uint64) UCompact {
 	return NewUCompact(new(big.Int).SetUint64(value))
 }
 
+func (u *UCompact) Int64() int64 {
+	i := big.Int(*u)
+	return i.Int64()
+}
+
 func (u *UCompact) Decode(decoder scale.Decoder) error {
 	ui, err := decoder.DecodeUintCompact()
 	if err != nil {
