@@ -75,7 +75,6 @@ type MMRLeaf struct {
 	ParentNumberAndHash   ParentNumberAndHash
 	BeefyNextAuthoritySet BeefyNextAuthoritySet
 	ParachainHeads        H256
-	DigestHash            H256
 }
 
 type MMRLeafVersion U8
